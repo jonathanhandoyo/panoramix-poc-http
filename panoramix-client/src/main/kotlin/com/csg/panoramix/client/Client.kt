@@ -44,9 +44,9 @@ class Client(private val config: ClientConfig) {
 }
 
 interface Callback {
-  fun onEventOne()
-  fun onEventTwo()
-  fun onEventThree()
+  fun onEventOne() = println("defensive implementation")
+  fun onEventTwo() = println("defensive implementation")
+  fun onEventThree() = println("defensive implementation")
 
   enum class Events { ONE, TWO, THREE }
 }

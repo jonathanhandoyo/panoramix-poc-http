@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("callback")
-class Callbacks(private val callback: Callback) {
+class CallbackRestController(private val callback: Callback) {
   @PostMapping
   fun onEvent(@RequestHeader("X-Event") event: Callback.Events, @RequestBody payload: Any) {
     when(event) {
@@ -17,8 +17,6 @@ class Callbacks(private val callback: Callback) {
 }
 
 @Service
-class CallbackImpl: Callback {
-  override fun onEventOne() = TODO("not implemented")
-  override fun onEventTwo() = TODO("not implemented")
-  override fun onEventThree() = TODO("not implemented")
+class CustomCallbackImpl: Callback {
+  override fun onEventOne() = println("overridden implementation")
 }
