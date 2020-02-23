@@ -42,3 +42,11 @@ class Client(private val config: ClientConfig) {
       .capture<Process>()
   }
 }
+
+interface Callback {
+  fun onEventOne()
+  fun onEventTwo()
+  fun onEventThree()
+
+  enum class Events { ONE, TWO, THREE }
+}

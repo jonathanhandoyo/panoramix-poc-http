@@ -6,7 +6,10 @@ import org.springframework.web.server.ResponseStatusException
 
 @RestController
 @RequestMapping("processes")
-class ProcessController(private val processes: Processes, private val registrations: Registrations) {
+class ProcessController(
+  private val processes: Processes,
+  private val registrations: Registrations
+) {
 
   @GetMapping
   fun get(): List<Process> = processes.findAll()
@@ -23,16 +26,16 @@ class ProcessController(private val processes: Processes, private val registrati
 
 @RestController
 @RequestMapping("register")
-class RegistrationController(private val registrations: Registrations) {
+class RegistrationController(
+  private val registrations: Registrations
+) {
 
   @GetMapping
   fun get(): List<Registration> = registrations.findAll()
 
   @PostMapping
   fun post(@RequestBody body: Registration): Boolean {
-    if (!registrations.existsByName(body.name)) {
-      registrations.save(body)
-    }
+    if (!registrations.existsByName(body.name)) registrations.save(body)
     return true
   }
 }
